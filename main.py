@@ -33,8 +33,12 @@ def write_branch_diff(current_branch, target_branch):
     # Open the repository
     repo = git.Repo(".")
 
+
+    current = repo.heads[current_branch]
+    target = repo.heads[target_branch]
+
     # Get the diff between the two branches
-    diff = repo.git.diff(current_branch, target_branch)
+    diff = repo.git.diff(current, target)
 
     # Write the diff to a file
     print(diff)
@@ -47,8 +51,8 @@ if __name__ == "__main__":
     current_branch = context.payload.get("pull_request").get("head").get("ref")
     target_branch = context.payload.get("pull_request").get("base").get("ref")
 
-    print(f"Corrent branch ${current_branch}")
-    print(f"Target branch ${target_branch}")
+    print(f"Corrent branch {current_branch}")
+    print(f"Target branch {target_branch}")
 
     write_branch_diff(current_branch, target_branch)
 
