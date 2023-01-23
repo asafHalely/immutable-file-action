@@ -28,15 +28,17 @@ def isPR():
         print("This action should only be run with Pull Request Events")
         exit(1)
 
+
 def write_branch_diff(current_branch, target_branch):
     # Open the repository
     repo = git.Repo(".")
-    
+
     # Get the diff between the two branches
     diff = repo.git.diff(current_branch, target_branch)
 
     # Write the diff to a file
     print(diff)
+
 
 if __name__ == "__main__":
     # Check that this runs only in PR
@@ -44,7 +46,7 @@ if __name__ == "__main__":
 
     current_branch = context.payload.get("pull_request").get("head").get("ref")
     target_branch = context.payload.get("pull_request").get("base").get("ref")
-    
+
     write_branch_diff(current_branch, target_branch)
 
     # pull_request = context.payload.get("pull_request")
