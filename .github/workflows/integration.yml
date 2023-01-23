@@ -13,6 +13,4 @@ jobs:
         # Put your action repo here
         uses: ./
         with:
-          files: 
-            - 1
-            - "2"
+          files: [1,"2"]
