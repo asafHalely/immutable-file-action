@@ -37,6 +37,8 @@ def write_branch_diff(current_branch, target_branch):
 
 def isMatch(file_name):
     for regex in files:
+        print(f"^{regex}")
+        print(file_name)
         if re.search(f"^{regex}", file_name):
             return False
 
@@ -58,7 +60,7 @@ if __name__ == "__main__":
     print(f"Changed files are: {diffFiles}")
 
     print(files)
-    
+
     immutable = []
 
     for file in diffFiles:
