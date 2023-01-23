@@ -12,5 +12,3 @@ jobs:
       - name: Self test
         # Put your action repo here
         uses: ./
-        with:
-          files:
