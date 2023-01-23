@@ -14,5 +14,4 @@ jobs:
         uses: ./
         with:
           files:
-            1
-            2
+            .github

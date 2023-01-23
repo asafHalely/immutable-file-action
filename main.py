@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import git
 from actions_toolkit.github import Context
 
@@ -7,21 +8,6 @@ context = Context()
 
 files = os.environ.get("INPUT_FILES")
 
-
-# def getRegex():
-#     if PK is not None:
-#         return rf'^{PK}-\d+:? +\S'
-#     return r'^[A-Z]+-\d+:? +\S'
-
-
-# def checkTitle(title):
-#     regex = getRegex()
-#     print(regex)
-#     if re.search(regex, title) is None :
-#         print("Bad Title")
-#         exit(1)
-
-#     print("Title is Ok")
 
 # Check that this runs only in PR
 def isPR():
@@ -46,6 +32,14 @@ def write_branch_diff(current_branch, target_branch):
 
     return files
 
+def isMatch(file_name):
+    for regex in files:
+        txt = "The rain in Spain"
+        if re.search(f"^{regex}", file_name):
+            return False
+    
+    return True
+
 
 if __name__ == "__main__":
     # Check that this runs only in PR
@@ -60,8 +54,18 @@ if __name__ == "__main__":
     diffFiles = write_branch_diff(current_branch, target_branch)
 
     print(diffFiles)
+
+    immutable = []
+
+    for file in diffFiles:
+        if isMatch(file):
+            immutable.append(file)
     
-    print(files)
+    if immutable == []:
+        exit(0)
+    else:
+        for file in immutable:
+            print(f"Immutable file changed: {file}")
 
 
     # pull_request = context.payload.get("pull_request")
