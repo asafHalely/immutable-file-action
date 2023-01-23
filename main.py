@@ -55,8 +55,10 @@ if __name__ == "__main__":
 
     diffFiles = write_branch_diff(current_branch, target_branch)
 
-    print(diffFiles)
+    print(f"Changed files are: {diffFiles}")
 
+    print(files)
+    
     immutable = []
 
     for file in diffFiles:
