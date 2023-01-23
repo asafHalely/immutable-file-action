@@ -1,0 +1,14 @@
+name: Immutable Files
+description: Check that files or folders didnt change
+author: 'Asaf Halely'
+inputs:
+  files:
+    description: 'List of files to be checked for immutability'
+    required: true
+    type: array
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  color: 'orange'
+  icon: 'alert-octagon'

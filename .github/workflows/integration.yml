@@ -1,0 +1,14 @@
+name: Integration Test
+on:
+  pull_request:
+    branches:
+      - 'main'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Self test
+        # Put your action repo here
+        uses: ./
