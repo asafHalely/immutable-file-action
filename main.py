@@ -33,12 +33,8 @@ def write_branch_diff(current_branch, target_branch):
     # Open the repository
     repo = git.Repo(".")
 
-
-    current = repo.heads[current_branch]
-    target = repo.heads[target_branch]
-
     # Get the diff between the two branches
-    diff = repo.git.diff(current, target)
+    diff = repo.git.diff(f"origin/{current_branch}", f"origin/{target_branch}")
 
     # Write the diff to a file
     print(diff)
