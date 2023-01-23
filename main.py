@@ -1,3 +1,4 @@
+import json
 import git
 from actions_toolkit.github import Context
 
@@ -32,13 +33,17 @@ def isPR():
 def write_branch_diff(current_branch, target_branch):
     # Open the repository
     repo = git.Repo(".")
+
+    # Fetch the origin
     repo.remotes.origin.fetch()
 
     # Get the diff between the two branches
     diff = repo.git.diff(f"origin/{current_branch}", f"origin/{target_branch}")
 
-    # Write the diff to a file
-    print(diff)
+    # Split to file names
+    files = diff.splitlines()
+
+    return files
 
 
 if __name__ == "__main__":
@@ -51,7 +56,13 @@ if __name__ == "__main__":
     print(f"Corrent branch {current_branch}")
     print(f"Target branch {target_branch}")
 
-    write_branch_diff(current_branch, target_branch)
+    diffFiles = write_branch_diff(current_branch, target_branch)
+
+    print(diffFiles)
+    
+    files = json.loads(run.inputs['files'])
+    print(files)
+
 
     # pull_request = context.payload.get("pull_request")
     # if pull_request is None or pull_request.get("title") is None :
