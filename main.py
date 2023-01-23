@@ -47,6 +47,9 @@ if __name__ == "__main__":
     current_branch = context.payload.get("pull_request").get("head").get("ref")
     target_branch = context.payload.get("pull_request").get("base").get("ref")
 
+    print(f"Corrent branch ${current_branch}")
+    print(f"Target branch ${target_branch}")
+
     write_branch_diff(current_branch, target_branch)
 
     # pull_request = context.payload.get("pull_request")
