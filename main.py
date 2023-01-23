@@ -1,10 +1,11 @@
 import json
+import os
 import git
 from actions_toolkit.github import Context
 
 context = Context()
 
-# PK = os.environ.get("INPUT_PROJECT_KEY")
+files = os.environ.get("INPUT_FILES")
 
 
 # def getRegex():
@@ -38,7 +39,7 @@ def write_branch_diff(current_branch, target_branch):
     repo.remotes.origin.fetch()
 
     # Get the diff between the two branches
-    diff = repo.git.diff(f"origin/{current_branch}", f"origin/{target_branch}")
+    diff = repo.git.diff("--name-only", f"origin/{current_branch}", f"origin/{target_branch}")
 
     # Split to file names
     files = diff.splitlines()
@@ -60,7 +61,6 @@ if __name__ == "__main__":
 
     print(diffFiles)
     
-    files = json.loads(run.inputs['files'])
     print(files)
 
 
