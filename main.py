@@ -28,7 +28,8 @@ context = Context()
 
 
 if __name__ == "__main__":
-    print(context)
+    print(vars(context))
+    print(dir(context))
     # pull_request = context.payload.get("pull_request")
     # if pull_request is None or pull_request.get("title") is None :
     #     print("This action should only be run with Pull Request Events")
