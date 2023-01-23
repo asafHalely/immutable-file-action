@@ -32,7 +32,7 @@ def isPR():
 def write_branch_diff(current_branch, target_branch):
     # Open the repository
     repo = git.Repo(".")
-    repo.fetch()
+    repo.remotes.origin.fetch()
 
     # Get the diff between the two branches
     diff = repo.git.diff(f"origin/{current_branch}", f"origin/{target_branch}")
