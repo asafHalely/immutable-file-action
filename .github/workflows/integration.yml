@@ -14,5 +14,3 @@ jobs:
         uses: ./
         with:
           files: 
-            .github
-            main.py

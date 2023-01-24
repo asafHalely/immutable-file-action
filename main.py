@@ -37,7 +37,6 @@ def write_branch_diff(current_branch, target_branch):
 
 def isImmutable(file_name):
     for regex in files:
-        print(file_name)
         if re.search(f"^{regex}", file_name):
             return True
 
@@ -58,9 +57,9 @@ if __name__ == "__main__":
 
     print(f"Changed files are: {diffFiles}")
 
-    print(files)
     files = list(filter(lambda x: x != "", files.split(' ')))
-    print(files)
+
+    print(f"Input files are: {files}")
 
     immutable = []
 
