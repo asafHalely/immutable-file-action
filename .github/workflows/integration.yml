@@ -13,6 +13,4 @@ jobs:
         # Put your action repo here
         uses: ./
         with:
-          files:
-            - .github
-            - main.py
+          files: .github,main.py
