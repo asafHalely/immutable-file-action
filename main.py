@@ -58,7 +58,9 @@ if __name__ == "__main__":
 
     print(f"Changed files are: {diffFiles}")
 
+    print(files)
     files = list(filter(lambda x: x != "", files.split(',')))
+    print(files)
 
     immutable = []
 
